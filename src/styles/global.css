@@ -1,0 +1,35 @@
+/* styles/global.css — base styles, applies to every scene */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+  /* Fallback background colour while scene loads */
+  background: #d4edda;
+}
+
+#scene-container {
+  width: 100%; height: 100%;
+  position: relative;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%; height: 100%;
+}
+
+/* Shared button utilities used by global.css consumers */
+.btn {
+  cursor: pointer; border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  transition: transform .12s, box-shadow .12s;
+  position: relative; overflow: hidden;
+}
+.btn:active { transform: scale(.97); }
