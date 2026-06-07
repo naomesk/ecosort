@@ -1,0 +1,267 @@
+/* scenes/leaderboard/style.css */
+
+.lb-frost {
+  position: fixed;
+  inset: 0;
+  background: rgba(220, 230, 240, 0.25);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.lb-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: url('/assets/images/background.jpeg') center/cover no-repeat;
+  z-index: 2;
+  padding: 24px 20px;
+  overflow-y: auto;
+}
+
+.lb-card {
+  width: 540px;
+  max-width: 90%;
+  background: rgba(247, 249, 242, 0.95);
+  border-radius: 30px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+  animation: fadeUp .5s ease both;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header butterfly image */
+.lb-butterfly-img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
+  animation: lb-bf-float 3.4s ease-in-out infinite;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
+}
+@keyframes lb-bf-float {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%       { transform: translateY(-10px) rotate(6deg); }
+}
+
+/* Background decorative butterflies */
+.lb-bf {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+.lb-bf-1 {
+  width: 58px; top: 6%;  left: 4%;
+  opacity: 0.7;
+  animation: lb-drift-a 9s  ease-in-out infinite;
+}
+.lb-bf-2 {
+  width: 42px; top: 55%; right: 5%;
+  opacity: 0.6;
+  transform: scaleX(-1) rotate(8deg);
+  animation: lb-drift-b 11s ease-in-out infinite 2s;
+}
+.lb-bf-3 {
+  width: 36px; bottom: 8%; left: 8%;
+  opacity: 0.55;
+  transform: rotate(-14deg);
+  animation: lb-drift-a 8s  ease-in-out infinite 4s;
+}
+
+@keyframes lb-drift-a {
+  0%, 100% { transform: translate(0, 0)     rotate(-14deg); }
+  35%       { transform: translate(16px,-26px) rotate(0deg); }
+  70%       { transform: translate(6px, -14px) rotate(-20deg); }
+}
+@keyframes lb-drift-b {
+  0%, 100% { transform: scaleX(-1) translate(0, 0)       rotate(8deg); }
+  40%       { transform: scaleX(-1) translate(-12px,-20px) rotate(2deg); }
+  75%       { transform: scaleX(-1) translate(-4px, -10px) rotate(14deg); }
+}
+
+.lb-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  color: #566573;
+  margin-bottom: 4px;
+}
+
+.lb-sub {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  color: #888;
+}
+
+/* Podium */
+.lb-podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  max-width: 130px;
+}
+
+.podium-rank-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #b0bec5;
+}
+.podium-rank-num.gold   { color: #f9a825; }
+.podium-rank-num.silver { color: #90a4ae; }
+.podium-rank-num.bronze { color: #a1887f; }
+
+.podium-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: #f0ebe0;
+  border: 3px solid #e0d8cc;
+}
+.podium-badge.gold   { background: #fff9c4; border-color: #f9a825; }
+.podium-badge.silver { background: #eceff1; border-color: #90a4ae; }
+.podium-badge.bronze { background: #ffe0b2; border-color: #a1887f; }
+
+.podium-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #78909c;
+}
+
+.podium-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2f3a3f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.podium-score {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #388E3C;
+}
+
+/* Full list */
+.lb-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.lb-entry {
+  display: grid;
+  grid-template-columns: 2rem 2.4rem 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  background: rgba(249, 246, 240, 0.9);
+  border-radius: 14px;
+  border: 1px solid #ede8df;
+  font-family: 'Nunito', sans-serif;
+}
+
+.lb-entry-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8e0d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #5a6368;
+}
+.lb-entry-rank.gold   { background: #fff9c4; color: #795548; }
+.lb-entry-rank.silver { background: #eceff1; color: #546e7a; }
+.lb-entry-rank.bronze { background: #ffe0b2; color: #6d4c41; }
+
+.lb-entry-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: 2px solid #c8e6c9;
+}
+
+.lb-entry-name {
+  font-weight: 600;
+  color: #2f3a3f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lb-entry-score {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #388E3C;
+  white-space: nowrap;
+}
+
+/* Empty state */
+.lb-empty {
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 0;
+}
+.lb-empty span { font-size: 2.5rem; }
+.lb-empty p    { font-family: 'Nunito', sans-serif; font-weight: 700; color: #2f3a3f; }
+.lb-empty-sub  { font-size: .85rem !important; color: #90a0a8 !important; font-weight: 400 !important; }
+
+/* Actions */
+.lb-actions { margin-top: 4px; }
+
+.home-btn {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #566573;
+  color: #566573;
+  padding: 13px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+.home-btn:hover  { background: #566573; color: white; }
+.home-btn:active { transform: scale(.97); }

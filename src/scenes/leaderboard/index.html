@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<div class="lb-frost"></div>
+
+<div class="lb-screen">
+
+  <!-- Decorative butterflies -->
+  <img src="/assets/images/butterfly.png" class="lb-bf lb-bf-1" alt="">
+  <img src="/assets/images/butterfly.png" class="lb-bf lb-bf-2" alt="">
+  <img src="/assets/images/butterfly.png" class="lb-bf lb-bf-3" alt="">
+
+  <div class="lb-card">
+
+    <div class="lb-header">
+      <img src="/assets/images/butterfly.png" class="lb-butterfly-img" alt="">
+      <h1 class="lb-title">🏆 Garden Champions</h1>
+      <p class="lb-sub">Top sorters across all sessions</p>
+    </div>
+
+    <!-- Podium — top 3, populated by script.js -->
+    <div class="lb-podium" id="lb-podium"></div>
+
+    <!-- Empty state -->
+    <div class="lb-empty" id="lb-empty" style="display:none">
+      <span>🌱</span>
+      <p>No scores yet!</p>
+      <p class="lb-empty-sub">Play your first round and claim the top spot.</p>
+    </div>
+
+    <!-- Full ranked list -->
+    <ol class="lb-list" id="lb-list"></ol>
+
+    <div class="lb-actions">
+      <button id="btn-home" class="home-btn">🏠 Return to Gate</button>
+    </div>
+
+  </div>
+</div>

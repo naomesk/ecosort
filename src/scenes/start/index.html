@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="/scenes/start/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+<canvas id="petal-canvas"></canvas>
+
+<img class="butterfly bf-sm"  src="/assets/images/butterfly.png" style="top:14%;animation-duration:17s;animation-delay:0s;"    alt="">
+<img class="butterfly bf-md"  src="/assets/images/butterfly.png" style="top:32%;animation-duration:23s;animation-delay:-6s;"  alt="">
+<img class="butterfly bf-lg"  src="/assets/images/butterfly.png" style="top:52%;animation-duration:19s;animation-delay:-3s;"  alt="">
+<img class="butterfly bf-sm"  src="/assets/images/butterfly.png" style="top:70%;animation-duration:26s;animation-delay:-11s;" alt="">
+<img class="butterfly bf-md bf-flip" src="/assets/images/butterfly.png" style="top:43%;animation-duration:21s;animation-delay:-8s;" alt="">
+
+<button id="lang-toggle" aria-label="Switch language">
+  <span id="lang-label">EN ↔ 한글</span>
+</button>
+
+<div id="screen-main" class="screen">
+
+  <div class="logo-wrap">
+    <img class="logo-image" src="/assets/images/logo.jpeg" alt="Eco Sort Logo" />
+    <h1 class="logo-title" id="t-title">Eco Sort</h1>
+    <p  class="logo-sub"   id="t-sub">Learn to Sort, Grow to Bloom</p>
+  </div>
+
+  <div class="start-form">
+    <label for="player-name">Your Name</label>
+    <input id="player-name" type="text" maxlength="20"
+           placeholder="Enter your name…" autocomplete="off" />
+  </div>
+
+  <div class="btn-stack">
+    <div class="diff-strip" role="group" aria-label="Difficulty">
+      <button class="diff-pill active" data-diff="easy"   id="d-easy">Easy</button>
+      <button class="diff-pill"        data-diff="medium" id="d-medium">Medium</button>
+      <button class="diff-pill"        data-diff="hard"   id="d-hard">Hard</button>
+    </div>
+    <button class="btn btn-primary"   id="t-start">Start Game</button>
+    <button class="btn btn-secondary" id="t-lb">Leaderboard</button>
+    <button class="btn btn-tertiary"  id="t-htp">How to Play</button>
+  </div>
+
+</div>
+
+<!-- Leaderboard overlay -->
+<div id="overlay-lb" class="overlay" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="panel">
+    <button class="panel-close" id="close-lb" aria-label="Close">✕</button>
+    <h2 class="panel-title" id="lb-title">🏆 <span id="t-lb-title">Leaderboard</span></h2>
+    <div id="lb-content"></div>
+  </div>
+</div>
+
+<!-- How to Play overlay -->
+<div id="overlay-htp" class="overlay" role="dialog" aria-modal="true" aria-labelledby="htp-title">
+  <div class="panel">
+    <button class="panel-close" id="close-htp" aria-label="Close">✕</button>
+    <h2 class="panel-title" id="htp-title">🌱 <span id="t-htp-title">How to Play</span></h2>
+
+    <div class="htp-step">
+      <div class="htp-icon">🗑️</div>
+      <div class="htp-body">
+        <div class="htp-label" id="t-h1">Sort the waste</div>
+        <div class="htp-desc"  id="t-h1d">Drag each item into the correct bin — recyclables, compost, landfill, or hazardous.</div>
+      </div>
+    </div>
+    <div class="htp-step">
+      <div class="htp-icon">👆</div>
+      <div class="htp-body">
+        <div class="htp-label" id="t-h2">Drag &amp; drop</div>
+        <div class="htp-desc"  id="t-h2d">Grab items and drop them into the matching bin. On mobile, tap and hold then drag.</div>
+      </div>
+    </div>
+    <div class="htp-step">
+      <div class="htp-icon">🌸</div>
+      <div class="htp-body">
+        <div class="htp-label" id="t-h3">Blossom lifeline</div>
+        <div class="htp-desc"  id="t-h3d">Each mistake wilts a petal. Three petals lost and the round ends!</div>
+      </div>
+    </div>
+    <div class="htp-step">
+      <div class="htp-icon">⭐</div>
+      <div class="htp-body">
+        <div class="htp-label" id="t-h4">Earn points</div>
+        <div class="htp-desc"  id="t-h4d">Correct sorts add to your score. Combos and speed bonuses help you climb the leaderboard.</div>
+      </div>
+    </div>
+
+    <div class="htp-divider"></div>
+    <div class="htp-cta">
+      <button class="btn btn-primary" id="t-htp-start">Let's Play! 🌿</button>
+    </div>
+  </div>
+</div>
