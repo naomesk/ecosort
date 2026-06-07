@@ -1,0 +1,461 @@
+/* scenes/start/style.css
+   Design from teammate's CSS — adapted for router fragment injection.
+   No html/body rules here (those live in global.css).
+   All position:fixed elements work correctly inside the injected fragment.     */
+
+/* ── Google Fonts are loaded via <link> in index.html ───────────────────────*/
+
+:root {
+  --green:       #4CAF50;
+  --green-dark:  #388E3C;
+  --green-light: #C8E6C9;
+  --cream:       #FAF6EF;
+  --cream-dark:  #F0E9DA;
+  --birch:       #B2BABB;
+  --birch-text:  #5a6368;
+  --pink-petal:  #F8BBD0;
+  --blue-btn:    #7EB8D4;
+  --blue-dark:   #4A90A4;
+  --shadow:      rgba(80,60,40,.12);
+}
+
+/* ── Background image on the scene container ─────────────────────────────── */
+/* Applied to #scene-container via global.css's position:relative wrapper.
+   We use a pseudo on the .screen so it covers the full viewport.              */
+#screen-main::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('../../assets/images/background.jpeg') center/cover no-repeat;
+  z-index: -1;
+}
+
+/* Linen texture overlay */
+#screen-main::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg,  transparent, transparent 2px, rgba(180,150,100,.03) 2px, rgba(180,150,100,.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(180,150,100,.03) 2px, rgba(180,150,100,.03) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Petal canvas ────────────────────────────────────────────────────────── */
+#petal-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Butterflies ─────────────────────────────────────────────────────────── */
+.butterfly {
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.82;
+  animation: fly linear infinite;
+}
+.bf-sm   { width: 34px; }
+.bf-md   { width: 46px; }
+.bf-lg   { width: 56px; }
+.bf-flip { transform: scaleX(-1); }
+
+@keyframes fly {
+  0%   { transform: translateX(-130px) translateY(0) rotate(-8deg); }
+  40%  { transform: translateX(40vw)   translateY(-40px) rotate(4deg); }
+  70%  { transform: translateX(70vw)   translateY(-20px) rotate(-6deg); }
+  100% { transform: translateX(calc(100vw + 160px)) translateY(-100px) rotate(-10deg); }
+}
+.bf-flip { animation: fly-flip linear infinite; }
+@keyframes fly-flip {
+  0%   { transform: scaleX(-1) translateX(-130px) translateY(0) rotate(8deg); }
+  40%  { transform: scaleX(-1) translateX(40vw)   translateY(-35px) rotate(-4deg); }
+  70%  { transform: scaleX(-1) translateX(70vw)   translateY(-18px) rotate(6deg); }
+  100% { transform: scaleX(-1) translateX(calc(100vw + 160px)) translateY(-90px) rotate(10deg); }
+}
+
+/* ── Language toggle ─────────────────────────────────────────────────────── */
+#lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 20;
+  background: white;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: 24px;
+  padding: 6px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2f3a3f;
+  cursor: pointer;
+  transition: background .18s, border-color .18s, transform .1s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+#lang-toggle:hover  { background: var(--cream-dark); border-color: var(--birch); }
+#lang-toggle:active { transform: scale(.96); }
+
+/* ── Screen wrapper ──────────────────────────────────────────────────────── */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  gap: 0;
+  transition: opacity .35s ease, transform .35s ease;
+}
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+}
+
+/* ── Logo block ──────────────────────────────────────────────────────────── */
+.logo-wrap {
+  text-align: center;
+  background: rgba(255,255,255,0.75);
+  padding: 30px 35px;
+  border-radius: 28px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  margin-bottom: 24px;
+  animation: fadeUp .7s ease both;
+}
+
+.logo-image {
+  width: 160px;
+  height: auto;
+  margin-bottom: 12px;
+  animation: sway 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.2));
+}
+
+.logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 10vw, 72px);
+  color: #3f8f3f;
+  line-height: 1;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+
+.logo-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #444;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50%       { transform: rotate(4deg); }
+}
+
+/* ── Name input ──────────────────────────────────────────────────────────── */
+.start-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(300px, 90vw);
+  margin-bottom: 14px;
+  animation: fadeUp .7s .1s ease both;
+}
+
+.start-form label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2f3a3f;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 8px rgba(255,255,255,0.9);
+}
+
+.start-form input {
+  width: 100%;
+  padding: 11px 16px;
+  border: 2px solid var(--cream-dark);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.9);
+  color: #2f3a3f;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.start-form input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(76,175,80,.15);
+}
+
+/* ── Button stack ────────────────────────────────────────────────────────── */
+.btn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(300px, 90vw);
+  animation: fadeUp .7s .15s ease both;
+}
+
+/* ── Difficulty strip ────────────────────────────────────────────────────── */
+.diff-strip {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.diff-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cream-dark);
+  cursor: pointer;
+  transition: all .15s;
+  background: white;
+  color: #2f3a3f;
+  position: relative;
+  overflow: hidden;
+}
+.diff-pill.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-color: var(--green);
+}
+.diff-pill:hover:not(.active) { border-color: var(--birch); }
+
+/* ── Button base ─────────────────────────────────────────────────────────── */
+.btn {
+  width: 100%;
+  padding: 15px 24px;
+  border-radius: 50px;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .2px;
+  transition: transform .12s, box-shadow .12s, background .15s;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity .2s;
+  border-radius: inherit;
+}
+.btn:hover::after  { opacity: .08; }
+.btn:active        { transform: scale(.97); }
+.btn:active::after { opacity: .16; }
+
+.btn-primary {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 4px 18px rgba(76,175,80,.35), 0 1px 3px rgba(0,0,0,.08);
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(76,175,80,.45), 0 2px 6px rgba(0,0,0,.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #2f3a3f;
+  border: 1.5px solid var(--cream-dark);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.btn-secondary:hover {
+  border-color: var(--birch);
+  box-shadow: 0 4px 14px var(--shadow);
+  transform: translateY(-1px);
+}
+
+.btn-tertiary {
+  background: white;
+  color: var(--blue-dark);
+  border: 1.5px solid #b3d9e8;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.btn-tertiary:hover {
+  border-color: var(--blue-btn);
+  box-shadow: 0 4px 14px var(--shadow);
+  transform: translateY(-1px);
+}
+
+/* ── Ripple ──────────────────────────────────────────────────────────────── */
+.ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  transform: scale(0);
+  animation: ripple-anim .55s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── Overlay ─────────────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(3px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  padding: 20px;
+}
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.panel {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 32px 28px 28px;
+  width: min(380px, 100%);
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 48px rgba(80,60,40,.18);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform .3s ease;
+  border: 1px solid rgba(255,255,255,.7);
+}
+.overlay.open .panel { transform: translateY(0); }
+
+.panel-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #2f3a3f;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.panel-close:hover { background: var(--cream-dark); }
+
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 20px;
+  padding-right: 32px;
+  text-shadow:
+    0 0 8px rgba(255,255,255,1),
+    0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* ── Leaderboard ─────────────────────────────────────────────────────────── */
+.lb-list {
+  list-style: none;
+  padding: 0;
+}
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 15px;
+}
+.lb-row:last-child { border-bottom: none; }
+.lb-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2f3a3f;
+  flex-shrink: 0;
+}
+.lb-rank.gold   { background: #FFF176; color: #795548; }
+.lb-rank.silver { background: #ECEFF1; color: #546E7A; }
+.lb-rank.bronze { background: #FFCCBC; color: #6D4C41; }
+.lb-name  { flex: 1; font-weight: 600; color: #2f3a3f; text-shadow: 0 0 6px rgba(255,255,255,1); }
+.lb-score { font-weight: 700; color: var(--green-dark); text-shadow: 0 0 6px rgba(255,255,255,1); }
+
+.lb-empty {
+  text-align: center;
+  padding: 32px 0 16px;
+  color: #2f3a3f;
+}
+.lb-empty .lb-emoji { font-size: 40px; display: block; margin-bottom: 12px; }
+.lb-empty p { font-size: 14px; line-height: 1.6; }
+
+/* ── How to Play ─────────────────────────────────────────────────────────── */
+.htp-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.htp-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.htp-body {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15), 0 0 25px rgba(255,255,255,0.7);
+}
+.htp-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--green-dark);
+  margin-bottom: 3px;
+  text-shadow: 0 0 6px rgba(255,255,255,1), 1px 1px 3px rgba(0,0,0,0.35);
+}
+.htp-desc {
+  font-size: 15px;
+  color: #2f3a3f;
+  line-height: 1.55;
+  text-shadow: 0 0 6px rgba(255,255,255,1), 1px 1px 3px rgba(0,0,0,0.35);
+}
+.htp-divider {
+  height: 1px;
+  background: var(--cream-dark);
+  margin: 4px 0 20px;
+}
+.htp-cta { margin-top: 8px; }
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-image, .butterfly { animation: none; }
+  .screen, .overlay, .panel { transition: none; }
+}

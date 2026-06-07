@@ -1,0 +1,26 @@
+/* scenes/game/style.css — HUD overlay on top of the canvas */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap');
+
+#game-hud {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(8px);
+  border-bottom: 1.5px solid rgba(76,175,80,0.2);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2f3a3f;
+  pointer-events: none;
+  box-shadow: 0 2px 12px rgba(80,60,40,0.08);
+}
+
+#hud-score { text-align: left;   color: #388E3C; }
+#hud-level { text-align: center; color: #2f3a3f; }
+#hud-lives { text-align: right;  font-size: 1.2rem; letter-spacing: 2px; }
