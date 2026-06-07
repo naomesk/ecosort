@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Screen</title>
+    <link rel="stylesheet" href="../styles/play.css">
+</head>
+<body>
+    <div id="game-container">
+        <span id="score">0</span>
+        <div id="game-area">
+            <!-- Game elements will be rendered here -->
+            <div class="trash-container">
+                <div id="trash-items">
+                    <!-- <div draggable="true" class="trash">Plastic Bottle</div>
+                    <div draggable="true" class="trash">Paper Cup</div>
+                    <div draggable="true" class="trash">Glass Jar</div> -->
+                    <div class="trash" draggable="true" data-type="plastic">
+                        🧴 Plastic Bottle
+                    </div>
+
+                    <div class="trash" draggable="true" data-type="paper">
+                        📄 Newspaper
+                    </div>
+
+                    <div class="trash" draggable="true" data-type="metal">
+                        🥫 Soda Can
+                    </div>
+
+                    <div class="trash" draggable="true" data-type="organic">
+                        🍌 Banana Peel
+                    </div>
+                </div>
+            </div>
+            <div class="bins">
+                <div id="sorting-bins">
+                    <!-- <div class="bin" data-bin="plastic">Recycling</div>
+                    <div class="bin" data-bin="organic">Compost</div>
+                    <div class="bin" data-bin="landfill">Landfill</div> -->
+                    <div class="bin plastic" data-bin="plastic">
+                        ♻️ Plastic
+                    </div>
+
+                    <div class="bin paper" data-bin="paper">
+                        📚 Paper
+                    </div>
+
+                    <div class="bin metal" data-bin="metal">
+                        🔩 Metal
+                    </div>
+
+                    <div class="bin organic" data-bin="organic">
+                        🌱 Organic
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../main.js"></script>
+</body>
+</html>

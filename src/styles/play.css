@@ -1,0 +1,40 @@
+.trash-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.trash {
+  background: white;
+  border: 2px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: grab;
+  width: 140px;
+  transition: transform 0.2s;
+}
+
+.trash:hover {
+  transform: scale(1.05);
+}
+
+.bins {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.bin {
+  width: 160px;
+  height: 180px;
+  border-radius: 12px;
+  padding-top: 20px;
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+}
